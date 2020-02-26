@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Card Page";
+}
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/jquery-card.js"></script>
+    <script type="text/javascript" src="~/js/card-viewer.js"></script>
+}
+
+
+
+<div class="card-wrapper">
+</div>
+@model PaymentTest.Models.PaymentModels.PayingUser
+@using (Html.BeginForm("SendRequestToBank", "Payment", FormMethod.Post))
+    {
+<div class="row">   
+    <div class="col-md-6">
+        <div class="md-form">
+            @Html.TextBoxFor(u => u.CardInformation.CardNumber, new {@name="number", @class = "form-control", @placeholder="Kart Numarası"})
+            @* <label for="number">Card Number</label>*@
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="md-form">
+            @Html.TextBoxFor(u => u.CardInformation.CardNumber, new {@name="name", @value=@Model.User.Name + " " + @Model.User.Surname, @class = "form-control", @placeholder="Ad Soyad"})
+            @*<label for="name">Holder Name</label>*@
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-4 md-form" style="float:left">
+            @Html.TextBoxFor(u => u.CardInformation.CardNumber, new {@name="expiry", @class = "form-control", @placeholder="Son Kullanım Tarihi"})
+            @*  <label for="expiry">Expiry Date</label>*@
+        </div>
+        <div class="col-md-4 md-form" style="float:left">
+            @Html.TextBoxFor(u => u.CardInformation.CardNumber, new {@name="cvc", @class = "form-control", @placeholder="Cvc Kod"})
+            @*  <label for="cvc">Cvc Code</label>*@
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="md-form">
+            <button class="btn btn-primary btn-md">Submit Payment</button>
+        </div>
+    </div>
+</div>
+          }
+
+

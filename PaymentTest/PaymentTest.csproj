@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>PaymentUI\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="PaymentOperation\**" />
+    <Compile Remove="RequestOperation\**" />
+    <Content Remove="PaymentOperation\**" />
+    <Content Remove="RequestOperation\**" />
+    <EmbeddedResource Remove="PaymentOperation\**" />
+    <EmbeddedResource Remove="RequestOperation\**" />
+    <None Remove="PaymentOperation\**" />
+    <None Remove="RequestOperation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentManagement\PaymentManagement.csproj" />
+  </ItemGroup>
+
+
+
+</Project>

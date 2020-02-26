@@ -1,0 +1,11 @@
+C:\Users\MertCengiz\source\repos\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.csprojAssemblyReference.cache
+C:\Users\MertCengiz\source\repos\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.AssemblyInfoInputs.cache
+C:\Users\MertCengiz\source\repos\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.AssemblyInfo.cs
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.csprojAssemblyReference.cache
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.AssemblyInfoInputs.cache
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.AssemblyInfo.cs
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\bin\Debug\netstandard2.1\PaymentManagement.deps.json
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\bin\Debug\netstandard2.1\PaymentManagement.dll
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\bin\Debug\netstandard2.1\PaymentManagement.pdb
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.dll
+C:\Users\MertCengiz\source\repos\PaymentManager\PaymentManagement\obj\Debug\netstandard2.1\PaymentManagement.pdb

@@ -1,0 +1,3 @@
+C:\Users\MertCengiz\source\repos\PaymentManagement\obj\Debug\netstandard2.0\PaymentManagement.csprojAssemblyReference.cache
+C:\Users\MertCengiz\source\repos\PaymentManagement\obj\Debug\netstandard2.0\PaymentManagement.AssemblyInfoInputs.cache
+C:\Users\MertCengiz\source\repos\PaymentManagement\obj\Debug\netstandard2.0\PaymentManagement.AssemblyInfo.cs
