@@ -9,32 +9,33 @@
         @model PaymentTest.Models.PaymentModels.PayingUser
         @using (Html.BeginForm("Index", "Payment", FormMethod.Post))
     {
-        <div class="form-row  justify-content-md-center">
-            @*Ad Soyad*@
-            <div class="form-group">
-                <div class="md-form">
-                    @Html.TextBoxFor(u => u.User.Name, new {@class = "form-control", @placeholder="Adı"})
-                </div>
-                <div class="md-form ">
-                    @Html.TextBoxFor(u => u.User.Surname, new {@class = "form-control", @placeholder="Soyadı" })
-                </div>
+    <div class="form-row  justify-content-md-center">
+        @*Ad Soyad*@
+        <div class="form-group">
+            <div class="md-form">
+                @Html.TextBoxFor(u => u.User.Name, new { @class = "form-control", @placeholder = "Adı" })
             </div>
-            @*Bölüm&Tutar*@
-            <div class="form-group">
-                <div class="md-form">
-                    <input type="text" name="divison" class="form-control" placeholder="Bölüm">
-                </div>
-                <div class="md-form">
-                    @Html.TextBoxFor(u => u.PaymentInformation.TotalAmount, new {@class = "form-control", @placeholder="Ödenecek Tutar" })
-                </div>
-            </div>
-            @Html.TextBoxFor(u => u.User.Id, new {@data_bind="value: 2",@style="visibility:hidden"})
-            @*Gönder*@
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="submit" class="btn-success" value="Ödeme Sayasına Git" />
-                </div>
+            <div class="md-form ">
+                @Html.TextBoxFor(u => u.User.Surname, new { @class = "form-control", @placeholder = "Soyadı" })
             </div>
         </div>
+        @*Bölüm&Tutar*@
+        <div class="form-group">
+            <div class="md-form">
+                <input type="text" name="divison" class="form-control" placeholder="Bölüm">
+            </div>
+            <div class="md-form">
+                @Html.TextBoxFor(u => u.PaymentInformation.TotalAmount, new { @class = "form-control", @placeholder = "Ödenecek Tutar" })
+            </div>
+        </div>
+        @Html.TextBoxFor(u => u.User.Id, new { @value=2, @style = "visibility:hidden" })
+        @Html.HiddenFor(u => u.PaymentInformation.CurrencyCode, new { @value="TRY" })
+        @*Gönder*@
+        <div class="row">
+            <div class="col-md-6">
+                <input type="submit" class="btn-success" value="Ödeme Sayasına Git" />
+            </div>
+        </div>
+    </div>
  }
     </div>

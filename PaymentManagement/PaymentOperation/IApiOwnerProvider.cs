@@ -9,6 +9,6 @@ namespace PaymentManagement.PaymentOperation
     public interface IApiOwnerProvider
     {
         IApiOwner GetApiOwner();
-        IRequestBase GetRequestInstance();
+        IRequestBase GetRequestInstance(IRequestBase request);
     }
 }

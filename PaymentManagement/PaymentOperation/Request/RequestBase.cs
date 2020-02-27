@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaymentManagement.PaymentOperation.Request
 {
-    public class RequestBase:IRequestBase
+    public class RequestBase : IRequestBase
     {
         public string MerchantUser { get; set; }
         public string MerchantPassword { get; set; }
@@ -15,5 +15,6 @@ namespace PaymentManagement.PaymentOperation.Request
         public PaymentInformation PaymentInformation { get; set; }
         public string MerchantPaymentId { get; set; }
         public User Customer { get; set; }
+        public CardInformation CardInformation { get; set; }
     }
 }

@@ -1,5 +1,7 @@
-﻿using PaymentManagement.Models.PaymentModels.Response;
+﻿using PaymentManagement.Models.PaymentModels.Request;
+using PaymentManagement.Models.PaymentModels.Response;
 using PaymentManagement.PaymentOperation;
+using PaymentManagement.PaymentOperation.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,6 @@ namespace PaymentManagement.RequestOperation
 {
     public interface IReqeustManager
     {
-        T MakeHttpRequest<T>(PaymentApiOwner apiOwner) where T : IResponseBase;
+        T MakeBankRequest<T>(BankRequest bankRequest) where T : IResponseBase;
     }
 }

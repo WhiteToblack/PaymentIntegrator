@@ -1,4 +1,5 @@
-﻿using PaymentManagement.Models.PaymentModels.Request;
+﻿using PaymentManagement.DbOperation;
+using PaymentManagement.Models.PaymentModels.Request;
 using PaymentManagement.PaymentOperation.Request;
 using PaymentManagement.PaymentOperation.UniPay;
 using System;
@@ -17,35 +18,53 @@ namespace PaymentManagement.PaymentOperation
         }
 
         internal string GetApiUrl() {
-            throw new NotImplementedException();
+            string apiUrl = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.API_URL);
+            return apiUrl;
         }
 
         // Provide all owners after all integrations OK
-        public IApiOwner GetApiOwner() {            
+        public IApiOwner GetApiOwner() {
             switch (apiOwner) {
                 case PaymentApiOwner.UniSoft:
-                    return new UniPayApi();    
+                    return new UniPayApi();
                 default:
                     return new UniPayApi();
             }
         }
 
-        public IRequestBase GetRequestInstance() {
+        public IRequestBase GetRequestInstance(IRequestBase request) {
             switch (apiOwner) {
                 case PaymentApiOwner.UniSoft:
-                    return PrepareRequestInstance<UniPayRequest>();             
+                    return PrepareRequestInstance<UniPayRequest>(request);
                 default:
                     return new Request.RequestBase();
             }
         }
 
-        private T PrepareRequestInstance<T>() where T: RequestBase, new() {
-            T _request = new T();
-            _request.Merchant = "";
-            _request.MerchantPassword = "";
-            _request.MerchantUser = "";
+        public Type GetRequestObjType() {
+            switch (apiOwner) {
+                case PaymentApiOwner.UniSoft:
+                    return typeof(UniPayRequest);
+                default:
+                    return typeof(UniPayRequest);
+            }
+        }
 
-            return _request;
+        private T PrepareRequestInstance<T>(IRequestBase request) where T : RequestBase, new() {
+            if (request == null) {
+                request = new T();
+            }
+          
+            FillAuthHeader(request);
+
+            return (T)request;
+        }
+
+        private IRequestBase FillAuthHeader(IRequestBase request) {
+            request.Merchant = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.MERCHANT);
+            request.MerchantPassword = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.MERCHANT_PASSWORD);
+            request.MerchantUser = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.MERCHANT_USER);
+            return request;
         }
     }
 }
