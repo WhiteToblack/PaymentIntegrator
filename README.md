@@ -1,1 +1,1 @@
-# PaymentManager
+# Payment Integrator
