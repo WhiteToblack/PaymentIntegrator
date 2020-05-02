@@ -11,6 +11,6 @@ namespace PaymentManagement.RequestOperation
 {
     public interface IReqeustManager
     {
-        T MakeBankRequest<T>(BankRequest bankRequest) where T : IResponseBase;
+        IResponseBase MakeBankRequest<T>(BankRequest bankRequest) where T : ResponseBase, IResponseBase;
     }
 }

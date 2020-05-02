@@ -1,7 +1,10 @@
-﻿using PaymentManagement.DbOperation;
+﻿using PaymentManagement.Cache;
+using PaymentManagement.GeneralOperation;
 using PaymentManagement.Models.PaymentModels.Request;
+using PaymentManagement.Models.PaymentModels.Response;
 using PaymentManagement.PaymentOperation.Request;
 using PaymentManagement.PaymentOperation.UniPay;
+using PaymentManagement.RequestOperation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +15,19 @@ namespace PaymentManagement.PaymentOperation
     public class ApiOwnerProvider : IApiOwnerProvider
     {
 
-        PaymentApiOwner apiOwner;
+        PaymentApiOwner apiOwnerType;        
         public ApiOwnerProvider(PaymentApiOwner _apiOwner) {
-            apiOwner = _apiOwner;
+            apiOwnerType = _apiOwner;                    
         }
 
         internal string GetApiUrl() {
-            string apiUrl = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.API_URL);
+            string apiUrl = ConfigurationCache.Instance.GetValue(((int)apiOwnerType).ToString() + AuthConfig.API_URL);
             return apiUrl;
         }
 
         // Provide all owners after all integrations OK
         public IApiOwner GetApiOwner() {
-            switch (apiOwner) {
+            switch (apiOwnerType) {
                 case PaymentApiOwner.UniSoft:
                     return new UniPayApi();
                 default:
@@ -33,16 +36,16 @@ namespace PaymentManagement.PaymentOperation
         }
 
         public IRequestBase GetRequestInstance(IRequestBase request) {
-            switch (apiOwner) {
+            switch (apiOwnerType) {
                 case PaymentApiOwner.UniSoft:
-                    return PrepareRequestInstance<UniPayRequest>(request);
+                    return PrepareRequestInstance<RequestBase>(request);
                 default:
                     return new Request.RequestBase();
             }
         }
 
         public Type GetRequestObjType() {
-            switch (apiOwner) {
+            switch (apiOwnerType) {
                 case PaymentApiOwner.UniSoft:
                     return typeof(UniPayRequest);
                 default:
@@ -61,9 +64,9 @@ namespace PaymentManagement.PaymentOperation
         }
 
         private IRequestBase FillAuthHeader(IRequestBase request) {
-            request.Merchant = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.MERCHANT);
-            request.MerchantPassword = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.MERCHANT_PASSWORD);
-            request.MerchantUser = PaymentConfiguration.GetConfigurationValue(((int)apiOwner).ToString() + AuthConfig.MERCHANT_USER);
+            request.Merchant = ConfigurationCache.Instance.GetValue(((int)apiOwnerType).ToString() + AuthConfig.MERCHANT);
+            request.MerchantPassword = ConfigurationCache.Instance.GetValue(((int)apiOwnerType).ToString() + AuthConfig.MERCHANT_PASSWORD);
+            request.MerchantUser = ConfigurationCache.Instance.GetValue(((int)apiOwnerType).ToString() + AuthConfig.MERCHANT_USER);
             return request;
         }
     }

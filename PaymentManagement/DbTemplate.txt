@@ -1,0 +1,278 @@
+﻿USE [PaymentDb]
+GO
+/****** Object:  User [PaymentUser]    Script Date: 01/03/2020 13:11:26 ******/
+CREATE USER [PaymentUser] FOR LOGIN [PaymentUser] WITH DEFAULT_SCHEMA=[PAY]
+GO
+/****** Object:  Schema [PAY]    Script Date: 01/03/2020 13:11:26 ******/
+CREATE SCHEMA [PAY]
+GO
+/****** Object:  Table [PAY].[CONFIGURATION]    Script Date: 01/03/2020 13:11:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [PAY].[CONFIGURATION](
+	[CONFIGURATION_KEY] [varchar](20) NULL,
+	[CONFIGURATION_VALUE] [varchar](200) NULL,
+	[RECORD_STATUS] [char](1) NULL,
+	[LOG_DATE] [datetime] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [PAY].[PAYMENT_API_OWNER]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [PAY].[PAYMENT_API_OWNER](
+	[CODE] [smallint] NOT NULL,
+	[VALUE] [varchar](50) NOT NULL,
+	[DESCRIPTION] [varchar](200) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [PAY].[PAYMENT_PROCESS]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [PAY].[PAYMENT_PROCESS](
+	[PAYMENT_ID] [varchar](50) NOT NULL,
+	[CUSTOMER_ID] [varchar](50) NULL,
+	[CUSTOMER_NAME] [varchar](50) NULL,
+	[CUSTOMER_SURNAME] [varchar](50) NULL,
+	[CUSTOMER_DIVISON] [varchar](50) NULL,
+	[BANK_REQUEST_JSON] [text] NOT NULL,
+	[BANK_RESPONSE_JSON] [text] NULL,
+	[LOG_DATE] [datetime] NULL,
+	[API_OWNER] [smallint] NULL,
+	[IS_3D] [bit] NULL,
+	[UPDATE_DATE] [datetime] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [PAY].[PAYMENT_PROCESS_INFORMATION]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [PAY].[PAYMENT_PROCESS_INFORMATION](
+	[PAYMENT_ID] [varchar](50) NOT NULL,
+	[ACTION] [smallint] NULL,
+	[TOTAL_AMOUNT] [decimal](18, 0) NOT NULL,
+	[CURRENCY_CODE] [varchar](4) NOT NULL,
+	[PAYMENT_STATUS] [smallint] NOT NULL,
+	[PAYMENT_START_DATE] [datetime] NOT NULL,
+	[PAYMENT_COMPLETE_DATE] [datetime] NULL,
+	[INSTALLMENT] [bit] NULL,
+	[INSTALLMENT_COUNT] [smallint] NULL,
+	[ERROR_CODE] [varchar](10) NULL,
+	[FINAL_AMOUNT] [decimal](18, 0) NULL,
+	[RESPONSE_MESSAGE] [text] NULL,
+	[LOG_DATE] [datetime] NOT NULL,
+	[UPDATE_DATE] [datetime] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  StoredProcedure [PAY].[GET_ALL_CONFIGURATIONS]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		MERTC
+-- Create date: 27022020
+-- Description:	Ürün konfigurasyon bilgilerini getirir
+-- =============================================
+CREATE PROCEDURE [PAY].[GET_ALL_CONFIGURATIONS]	
+AS
+BEGIN
+	SELECT * FROM PAY.CONFIGURATION (NOLOCK)
+END
+
+GO
+/****** Object:  StoredProcedure [PAY].[INSERT_PAYMENT_PROCESS]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		MERTC	
+-- Create date: 29/02/2020
+-- Description:	Ödeme işlemini kayıt eder, Response ödeme işlemi sonrası başarılı\başarısız set edilir
+-- =============================================
+CREATE PROCEDURE [PAY].[INSERT_PAYMENT_PROCESS]
+		@PAYMENT_ID			varchar(50),
+		@CUSTOMER_ID		varchar(50),
+		@CUSTOMER_NAME		varchar(50),
+		@CUSTOMER_SURNAME	varchar(50),
+		@CUSTOMER_DIVISION	varchar(50) = null,
+		@BANK_REQUEST_JSON	text,
+		@BANK_RESPONSE_JSON	text = null,
+		@IS_3D				bit = null,
+		@API_OWNER			smallint
+AS
+BEGIN
+	INSERT INTO PAY.PAYMENT_PROCESS  (
+		 PAYMENT_ID
+		,CUSTOMER_ID
+		,CUSTOMER_NAME
+		,CUSTOMER_SURNAME
+		,CUSTOMER_DIVISON
+		,BANK_REQUEST_JSON
+		,BANK_RESPONSE_JSON
+		,IS_3D
+		,API_OWNER
+		,LOG_DATE			
+	) 
+	VALUES
+	(
+		 @PAYMENT_ID			
+		,@CUSTOMER_ID		
+		,@CUSTOMER_NAME		
+		,@CUSTOMER_SURNAME	
+		,@CUSTOMER_DIVISION	
+		,@BANK_REQUEST_JSON	
+		,@BANK_RESPONSE_JSON	
+		,@IS_3D
+		,@API_OWNER
+		,GETDATE()			
+	)
+END
+
+GO
+/****** Object:  StoredProcedure [PAY].[INSERT_PAYMENT_PROCESS_INFORMATION]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		MERTC	
+-- Create date: 29/02/2020
+-- Description:	Ödeme işleminin detay bilgilerini kayıt eder
+-- =============================================
+CREATE PROCEDURE [PAY].[INSERT_PAYMENT_PROCESS_INFORMATION]
+			 @PAYMENT_ID			varchar(50)
+			,@ACTION				smallint
+			,@TOTAL_AMOUNT			decimal(18, 0)
+			,@CURRENCY_CODE			varchar(4)
+			,@PAYMENT_STATUS		smallint
+			,@PAYMENT_START_DATE	datetime			
+			,@INSTALLMENT			bit	= 0
+			,@INSTALLMENT_COUNT		smallint = null			
+AS
+BEGIN
+	INSERT INTO [PAY].[PAYMENT_PROCESS_INFORMATION]
+           (
+		   [PAYMENT_ID]
+           ,[ACTION]
+           ,[TOTAL_AMOUNT]
+           ,[CURRENCY_CODE]
+           ,[PAYMENT_STATUS]
+           ,[PAYMENT_START_DATE]          
+		   ,[INSTALLMENT]
+		   ,[INSTALLMENT_COUNT]          
+		   ,[LOG_DATE]
+		   )
+     VALUES
+           (
+		    @PAYMENT_ID			
+           ,@ACTION				
+           ,@TOTAL_AMOUNT			
+           ,@CURRENCY_CODE			
+           ,@PAYMENT_STATUS		
+           ,@PAYMENT_START_DATE	           
+		   ,@INSTALLMENT
+		   ,@INSTALLMENT_COUNT           
+		   ,GETDATE()	
+		   )
+END
+
+GO
+/****** Object:  StoredProcedure [PAY].[UPDATE_PAYMENT_PROCESS_INFORMATION]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		MERTC
+-- Create date: 01.03.2020
+-- Description:	İşlem Sonucunda ilgili ödeme bilgisini günceller
+-- =============================================
+CREATE PROCEDURE [PAY].[UPDATE_PAYMENT_PROCESS_INFORMATION]
+			 @PAYMENT_ID			varchar(50)			
+			,@ERROR_CODE			varchar(10) 
+			,@FINAL_AMOUNT			decimal(18, 0) 
+			,@RESPONSE_MESSAGE		text  
+AS
+BEGIN
+	UPDATE PAY.PAYMENT_PROCESS_INFORMATION SET
+		PAYMENT_COMPLETE_DATE = GETDATE(),
+		UPDATE_DATE = GETDATE(),
+		ERROR_CODE = @ERROR_CODE,
+		FINAL_AMOUNT = @FINAL_AMOUNT,
+		RESPONSE_MESSAGE = @RESPONSE_MESSAGE
+	WHERE PAYMENT_ID = @PAYMENT_ID
+END
+
+GO
+/****** Object:  StoredProcedure [PAY].[UPDATE_PAYMENT_PROCESS_RESPONSE]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		MERTC
+-- Create date: 01.03.2020
+-- Description:	İşlem sonucunda dönen responsu saklar
+-- =============================================
+CREATE PROCEDURE [PAY].[UPDATE_PAYMENT_PROCESS_RESPONSE] 
+	@PAYMENT_ID		varchar(50),
+	@BANK_RESPONSE	text
+AS
+BEGIN
+	UPDATE PAYMENT_PROCESS SET 
+		BANK_RESPONSE_JSON = @BANK_RESPONSE,
+		UPDATE_DATE = GETDATE()
+	WHERE PAYMENT_ID = @PAYMENT_ID
+END
+
+GO
+/****** Object:  StoredProcedure [PAY].[UPDATE_PAYMENT_PROCESS_STATUS]    Script Date: 01/03/2020 13:11:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [PAY].[UPDATE_PAYMENT_PROCESS_STATUS]
+		@PAYMENT_ID		varchar(50),
+		@PAYMENT_STATUS smallint
+AS
+BEGIN
+		UPDATE PAY.PAYMENT_PROCESS_INFORMATION SET
+		 PAYMENT_STATUS = @PAYMENT_STATUS,
+		 UPDATE_DATE = GETDATE()
+		WHERE PAYMENT_ID = @PAYMENT_ID
+END
+
+GO

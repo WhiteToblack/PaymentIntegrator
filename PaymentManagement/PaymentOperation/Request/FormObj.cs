@@ -15,5 +15,9 @@ namespace PaymentManagement.PaymentOperation.Request
         public const string NAMEONCARD = "NAMEONCARD";
         public const string CARDPAN = "CARDPAN";
         public const string ACTION = "ACTION";
+        public const string SESSIONTYPE = "SESSIONTYPE";
+        public const string RETURNURL = "RETURNURL";
+        public const string EXTRA = "EXTRA";
+        public const string SESSIONTOKEN = "SESSIONTOKEN";
     }
 }

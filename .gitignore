@@ -1,9 +1,0 @@
-﻿################################################################################
-# Bu .gitignore dosyası Microsoft(R) Visual Studio tarafından otomatik olarak oluşturulmuştur.
-################################################################################
-
-/.vs/PaymentIntegrator/v16
-/PaymentTest/PaymentUI
-/PaymentTest/.vs/PaymentTest
-/PaymentTest/bin/Release/netcoreapp3.1
-/PaymentTest/obj/Release/netcoreapp3.1

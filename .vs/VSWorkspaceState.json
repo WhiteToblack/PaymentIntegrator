@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Integrator.Entity",
+    "\\Integrator.Entity\\Models",
+    "\\Integrator.PaymentChecker",
+    "\\Integrator.PaymentChecker\\Operation",
+    "\\Integrator.PaymentChecker\\Queues",
+    "\\PaymentManagement",
+    "\\PaymentManagement\\PaymentOperation",
+    "\\PaymentManagement\\PaymentOperation\\UniPay",
+    "\\PaymentManagement\\PaymentOperation\\UniPay\\Response",
+    "\\PaymentManagement\\PaymentOperation\\UniPay\\Response\\Session"
+  ],
+  "SelectedNode": "\\Integrator.PaymentChecker\\DequeueWorker.cs",
+  "PreviewInSolutionExplorer": false
+}

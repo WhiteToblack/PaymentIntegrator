@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Integrator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace PaymentManagement.Models.PaymentModels.Request
         string MerchantPaymentId { get; set; }
         User Customer { get; set; }
         CardInformation CardInformation { get; set; }
+        string Extra { get; set; }        
     }
 }

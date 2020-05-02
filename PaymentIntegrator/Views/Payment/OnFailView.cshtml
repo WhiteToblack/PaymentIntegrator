@@ -1,0 +1,19 @@
+﻿@model PaymentManagement.Models.PaymentModels.Response.IResponseBase
+
+@{
+    ViewData["Title"] = "OnFailView";
+}
+
+<h1>OnFailView</h1>
+
+<div>
+    <h4>Hata:</h4>
+    <h2>Error Code: @Model.ResponseCode</h2>
+    <h2>Error Message: @Model.ResponseMsg</h2>
+    <hr />
+    <dl class="row">
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Ödeme Ekranına Geri Dön", "Index", "Home")  
+</div>

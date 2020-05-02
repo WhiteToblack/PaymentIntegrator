@@ -1,0 +1,13 @@
+﻿@model PaymentManagement.Models.PaymentModels.Response.IResponseBase
+@{
+    ViewData["Title"] = "OnSuccessView";
+}
+<center>
+    <h1>
+        İşleminiz @ViewBag.PaymentId  ' numaralı ID ile Başarılı bir şekilde sonlandırılmıştır.
+    </h1>
+    <h3>
+        @Html.ActionLink("Ana Sayfaya Dönmek için tıklayınız.", "Index", "Home")      
+    </h3>
+</center>
+

@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Card Page";
+    ViewData["3D_Secure"] = true;
+}
+
+@section Scripts {
+    <script src="~/Content/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery-card.js"></script>
+    <script type="text/javascript" src="~/Content/js/card-viewer.js"></script>
+}
+<style>
+    #credit-card {
+        padding-top: 150px;
+    }
+
+    #credit-card-form {
+        padding-top: 50px;
+    }
+</style>
+
+
+<div class="row">
+
+    @model PaymentIntegrator.UI.Models.PayingUser
+    <div id="credit-card-form" class="col-md-6">
+        <div class="x_panel">
+            @using (Html.BeginForm("SendRequestToBank", "Payment", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row form-group">
+                    <div>
+                        <p>Sayın @Model.User.NameSurname,</p>
+                        <p> <span id="totalAmount" style="font-size:18px">@Model.PaymentInformation.TotalAmount</span> @Model.PaymentInformation.CurrencyCode 'lik işlem için lütfen kart bilgilerini giriniz.  </p>
+
+                        @Html.HiddenFor(u => u.PaymentInformation.TotalAmount, new { @value = @Model.PaymentInformation.TotalAmount })
+                        @Html.HiddenFor(u => u.PaymentInformation.CurrencyCode, new { @value = @Model.PaymentInformation.CurrencyCode })
+                        @Html.HiddenFor(u => u.User.Id, new { @value = Model.User.Id })
+                        @Html.HiddenFor(u => u.User.Name, new { @value = Model.User.Name })
+                        @Html.HiddenFor(u => u.User.Surname, new { @value = Model.User.Surname })
+                    </div>
+                </div>
+                <fieldset class="form-fields">
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="CardInformation.CardNumber">Kart Numarası</label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(u => u.CardInformation.CardNumber, new { @class = "required form-control" })
+                            @{Html.ValidateFor(u => u.CardInformation.CardNumber);}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="CardInformation.HolderName">Kart Üzerindeki İsim</label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(u => u.CardInformation.HolderName, new { @value = @Model.User.NameSurname, @class = "required form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="CardInformation.ExpiryDate">Son Kullanım Tarihi</label>
+                        <div class="col-sm-6" style="float:left">
+                            @Html.TextBoxFor(u => u.CardInformation.ExpiryDate, new { @class = "required form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="CardInformation.Cvv">Cvv Kod</label>
+                        <div class="col-sm-6" style="float:left">
+                            @Html.TextBoxFor(u => u.CardInformation.Cvv, new { @class = "required form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="CardInformation.Cvv">Ödeme Türü</label>
+                        <div class="col-sm-6" style="float:left">
+                            <script>
+                    window.amountList = function () {
+                        var parser = new DOMParser;
+                        var dom = parser.parseFromString(
+                            '<!doctype html><body>' +'@(ViewBag.AmountListStr)', 'text/html');
+                        var decodedString = dom.body.textContent;
+                        return JSON.parse(decodedString);
+                    }();
+                            </script>
+
+                            @Html.DropDownListFor(u => u.PaymentInformation.SelectedAmountId, Model.Amounts,  new { @onchange = "amountOnChange()", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row" id="installments" style="@(Model.PaymentInformation.AmountInformation.Where(x=>x.IsSelected).FirstOrDefault().UseInstallment ? "display:flex" : "display:none")">
+                        <label class="col-sm-6 col-form-label" for="PaymentInformation.InstallmentCount">Taksit Sayısı</label>
+                        <div class="col-sm-6" style="float:left">
+                            @Html.DropDownListFor(u => u.PaymentInformation.InstallmentCount, Model.Installments, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <input type="submit" class="btn btn-primary btn-md" value="Ödeme" />
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div>
+    <div id="credit-card" class="col-md-6">
+        <div class="card-wrapper">
+        </div>
+    </div>
+</div>

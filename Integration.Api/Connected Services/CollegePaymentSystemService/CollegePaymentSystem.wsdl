@@ -1,0 +1,4338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DeleteInstallmentDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="installmentCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="installmentId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProcessHeaderEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorityCode" type="tns:AuthorityEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AuthorityEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MissionCode" type="tns:MissionCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoleCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MissionCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="ManagementBoard" />
+          <s:enumeration value="Normal" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DeleteInstallmentDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteInstallmentDetailResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateStudentInstallmentDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="installmentCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="installmentId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="installmentAmount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastPaymentDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudentInstallmentDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateStudentInstallmentDetailResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectInstallmentLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectInstallmentLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectInstallmentLogResult" type="tns:InstallmentLogEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InstallmentLogEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LogUser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LogDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LogProcess" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:PaymentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PaymentEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentAmount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentRefNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentExternalRefNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentSource" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertPaymentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:PaymentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectPaymentResult" type="tns:ArrayOfPaymentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPaymentEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentEntity" nillable="true" type="tns:PaymentEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectPaymentByStudentNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPaymentByStudentNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectPaymentByStudentNumberResult" type="tns:ArrayOfPaymentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPaymentSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPaymentSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectPaymentSummaryResult" type="tns:ArrayOfPaymentSummaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPaymentSummaryEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentSummaryEntity" nillable="true" type="tns:PaymentSummaryEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentSummaryEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCostAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaidCostAmoount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingCostAmount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeletePayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentRefNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeletePaymentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssociationSummaryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:AssociationSummaryReportRequestEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AssociationSummaryReportRequestEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AssociationSummaryReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AssociationSummaryReportResult" type="tns:AssociationSummaryReportResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AssociationSummaryReportResponseEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AssociationSummaryReport" type="tns:ArrayOfAssociationSummaryReportEntity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfAssociationSummaryReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AssociationSummaryReportEntity" nillable="true" type="tns:AssociationSummaryReportEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AssociationSummaryReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTotalAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="DatePaymentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateRemainingAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPaymentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalRemainingAmount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StudentSummaryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentSummaryReportRequestEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentSummaryReportRequestEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StudentSummaryReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentSummaryReportResult" type="tns:StudentSummaryReportResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentSummaryReportResponseEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="StudentSummaryEntity" type="tns:ArrayOfStudentSummaryReportEntity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfStudentSummaryReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentSummaryReportEntity" nillable="true" type="tns:StudentSummaryReportEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentSummaryReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPaymentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalRemainingAmount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalPaymentStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StudentDetailReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentDetailReportRequestEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentDetailReportRequestEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StudentDetailReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentDetailReportResult" type="tns:StudentDetailReportResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentDetailReportResponseEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="StudentDetailEntity" type="tns:StudentDetailReportEntity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="StudentDetailReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StudentSummaryEntity" type="tns:ArrayOfStudentSummaryReportEntity" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentDetailEntryEntity" type="tns:ArrayOfStudentDetailEntryReportEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStudentDetailEntryReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentDetailEntryReportEntity" nillable="true" type="tns:StudentDetailEntryReportEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentDetailEntryReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProcessSoure" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InstallmentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastPaymentDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingAmount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentRefNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StudentCostCalculationAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="StudentCostCalculationAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentCostCalculationAllResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectStudentOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:OrderEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrderEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectStudentOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentOrderResult" type="tns:ArrayOfOrderEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOrderEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderEntity" nillable="true" type="tns:OrderEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectOrderedInstallment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:BankTotalDeptRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BankTotalDeptRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessEndDate" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectOrderedInstallmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectOrderedInstallmentResult" type="tns:ArrayOfBankStudentInstallment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBankStudentInstallment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BankStudentInstallment" nillable="true" type="tns:BankStudentInstallment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BankStudentInstallment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InstallmentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastPaymentDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAssociationDefinition">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAssociationDefinitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAssociationDefinitionResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentListByUnipa">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStudentListByUnipaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStudentListByUnipaResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAssociationBurs">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAssociationBursResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAssociationBursResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentBurs">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStudentBursResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStudentBursResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCreditCardPaymentData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CreditCardPaymentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreditCardPaymentEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Association" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentAmount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentSource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentExternalRefNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertCreditCardPaymentDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertCreditCardPaymentDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectCreditCardPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transactionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectCreditCardPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectCreditCardPaymentResult" type="tns:CreditCardPaymentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCreditCardPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentTransactionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentExternalRefNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCreditCardPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertCreditCardPaymentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:LoginRequestEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LoginRequestEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:LoginResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LoginResponseEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Header" type="tns:ProcessHeaderEntity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="UpdateLoginData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="personalNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateLoginDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateLoginDataResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAssociation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:AssociationEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AssociationEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertAssociationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertAssociationResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAssociationResult" type="tns:AssociationEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAssociationDetailResult" type="tns:AssociationDetailEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AssociationDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeList" type="tns:ArrayOfAssociationTypeDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAssociationTypeDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AssociationTypeDetailEntity" nillable="true" type="tns:AssociationTypeDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AssociationTypeDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusList" type="tns:ArrayOfCampusDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCampusDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CampusDetailEntity" nillable="true" type="tns:CampusDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CampusDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentList" type="tns:ArrayOfDepartmentEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDepartmentEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DepartmentEntity" nillable="true" type="tns:DepartmentEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DepartmentEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertCampus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CampusEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CampusEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertCampusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertCampusResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCampus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCampusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteCampusResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectCampus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectCampusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectCampusResult" type="tns:ArrayOfCampusEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCampusEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CampusEntity" nillable="true" type="tns:CampusEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertDepartment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:DepartmentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDepartmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertDepartmentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDepartment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departmentCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDepartmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteDepartmentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectDepartment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departmentCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectDepartmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectDepartmentResult" type="tns:ArrayOfDepartmentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentElementTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentElementTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentElementTypesResult" type="tns:ArrayOfPaymentElementTypes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPaymentElementTypes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentElementTypes" nillable="true" type="tns:PaymentElementTypes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentElementTypes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertStudentPaymentChoise">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentSource" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentElement" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertStudentPaymentChoiseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertStudentPaymentChoiseResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentPaymentChoise">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentPaymentChoiseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentPaymentChoiseResult" type="tns:ArrayOfPaymentChoiseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPaymentChoiseEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentChoiseEntity" nillable="true" type="tns:PaymentChoiseEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentChoiseEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentSource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPaymentElement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:PaymentElementEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PaymentElementEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HasInstallment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxInstallmentCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="HasPaymentForBank" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPaymentElementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertPaymentElementResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPaymentElements">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPaymentElementsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectPaymentElementsResult" type="tns:ArrayOfPaymentElementEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPaymentElementEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentElementEntity" nillable="true" type="tns:PaymentElementEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdatePaymentElement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:PaymentElementEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePaymentElementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePaymentElementResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePaymentElement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentElementCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePaymentElementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeletePaymentElementResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPersonal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:PersonalEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PersonalEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PersonEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PersonalNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Authority" type="tns:AuthorityEntity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PersonEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdentityNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPersonalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertPersonalResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPersonal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:PersonalEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPersonalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectPersonalResult" type="tns:ArrayOfPersonalEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPersonalEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PersonalEntity" nillable="true" type="tns:PersonalEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectPersonalByPersonalNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="personalNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectPersonalByPersonalNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectPersonalByPersonalNumberResult" type="tns:PersonalEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePersonal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="personalNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePersonalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeletePersonalResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAcademicPeriod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAcademicPeriodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAcademicPeriodResult" type="tns:ArrayOfAcademicPeriodEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAcademicPeriodEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AcademicPeriodEntity" nillable="true" type="tns:AcademicPeriodEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AcademicPeriodEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Period" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertAcademicPeriod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="period" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAcademicPeriodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertAcademicPeriodResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAcademicPeriod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAcademicPeriodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAcademicPeriodResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAcademicPeriod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAcademicPeriodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteAcademicPeriodResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:RoleEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RoleEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RoleCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxAmount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertRoleResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectRoleResult" type="tns:ArrayOfRoleEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRoleEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoleEntity" nillable="true" type="tns:RoleEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectRoleByRoleCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectRoleByRoleCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectRoleByRoleCodeResult" type="tns:ArrayOfRoleEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteRoleResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertStudent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PersonEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DepartmentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentSurname" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentIdentityNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EntranceYear" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IsForeign" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MaliOnay" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="InsertStudentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertStudentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentResult" type="tns:ArrayOfStudentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentEntity" nillable="true" type="tns:StudentEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectStudentBySubscriberNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentBySubscriberNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentBySubscriberNumberResult" type="tns:StudentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateStudentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteStudent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteStudentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteStudentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentFinancialApprove">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentFinancialApproveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentFinancialApproveResult" type="tns:StudentFinancialApproveEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentFinancialApproveEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaliOnay" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApproveUsername" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApproveDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Explanation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OgrenciMaliOnayKaydet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentElement" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="maliOnay" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="explanation" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OgrenciMaliOnayKaydetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OgrenciMaliOnayKaydetResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertStudentReduction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ReductionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReductionEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllEducationPeriods" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllPaymentElements" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReductionType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReductionName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReductionMatter" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Explanation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApprovalStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IsForeign" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IsPeriod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReductionId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationReductionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntranceScholarShip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PAYMENT_TYPE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DISCOUNT_TYPE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SCHOLARSHIP_TYPE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertStudentReductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertStudentReductionResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentReductionByStudentNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentReductionByStudentNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentReductionByStudentNumberResult" type="tns:ArrayOfReductionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfReductionEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReductionEntity" nillable="true" type="tns:ReductionEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateStudentReduction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="reductionId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ReductionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudentReductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateStudentReductionResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteStudentReduction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="reductionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteStudentReductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteStudentReductionResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAssociationCost">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CostEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntranceYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IsForeign" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CostId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CostDetailList" type="tns:ArrayOfCostDetailEntity" />
+          <s:element minOccurs="0" maxOccurs="1" name="CostDetailPriceList" type="tns:ArrayOfCostDetailEntity" />
+          <s:element minOccurs="0" maxOccurs="1" name="CostDetailUpdatePriceList" type="tns:ArrayOfCostDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCostDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CostDetailEntity" nillable="true" type="tns:CostDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CostDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CostId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentAmount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertAssociationCostResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertAssociationCostResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationCost">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationCostResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAssociationCostResult" type="tns:ArrayOfCostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCostEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CostEntity" nillable="true" type="tns:CostEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectAssociationCostByCostId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="costId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationCostByCostIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAssociationCostByCostIdResult" type="tns:ArrayOfCostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAssociationCostById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="costID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAssociationCostByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteAssociationCostByIdResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAssociationCostById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="costID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAssociationCostByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAssociationCostByIdResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAssociationCostDetailById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="costID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentElement" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CostDetailEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAssociationCostDetailByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAssociationCostDetailByIdResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertStudentCost">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentCostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentCostEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CostEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CostSource" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="InsertStudentCostResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertStudentCostResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentCost">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentCostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentCostResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentCostResult" type="tns:ArrayOfStudentCostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentCostEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentCostEntity" nillable="true" type="tns:StudentCostEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectStudentCostByCostId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="costd" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentCostByCostIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentCostByCostIdResult" type="tns:ArrayOfStudentCostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteStudentCostById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="costID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteStudentCostByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteStudentCostByIdResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudentCostById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="costID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentCostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudentCostByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateStudentCostByIdResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudentCostDetailById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="costID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentElement" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CostDetailEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStudentCostDetailByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateStudentCostDetailByIdResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationReduction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ReductionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationReductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAssociationReductionResult" type="tns:ArrayOfReductionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAssociationReduction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ReductionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAssociationReductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertAssociationReductionResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAssociationReduction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="reductionId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ReductionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAssociationReductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAssociationReductionResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAssociationReduction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="reductionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAssociationReductionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteAssociationReductionResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationCostPrice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:CostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAssociationCostPriceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAssociationCostPriceResult" type="tns:CostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentCostPrice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentCostPriceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentCostPriceResult" type="tns:CostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentCostPriceByAssociation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="associationTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="studentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="educationPeriod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectStudentCostPriceByAssociationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectStudentCostPriceByAssociationResult" type="tns:CostEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreviewInstallment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:InstallmentRequestEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InstallmentRequestEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IstallmentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deposite" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstInstallmentDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PreviewInstallmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PreviewInstallmentResult" type="tns:InstallmentResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InstallmentResponseEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="InstallmentEntity" type="tns:InstallmentEntity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="InstallmentEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssociationTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EducationPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElement" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentElementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApprovalStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EntryDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModifiedDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentDetailList" type="tns:ArrayOfInstallmentDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInstallmentDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InstallmentDetailEntity" nillable="true" type="tns:InstallmentDetailEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InstallmentDetailEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InstallmentID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InstallmentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastPaymentDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateInstallment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:InstallmentRequestEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateInstallmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateInstallmentResult" type="tns:InstallmentResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectInstallment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:InstallmentRequestEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectInstallmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectInstallmentResult" type="tns:InstallmentResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteInstallment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="header" type="tns:ProcessHeaderEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="installmentCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteInstallmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteInstallmentResult" type="tns:ResponseEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DeleteInstallmentDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteInstallmentDetail" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstallmentDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteInstallmentDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentInstallmentDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateStudentInstallmentDetail" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentInstallmentDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateStudentInstallmentDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectInstallmentLogSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectInstallmentLog" />
+  </wsdl:message>
+  <wsdl:message name="SelectInstallmentLogSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectInstallmentLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPayment" />
+  </wsdl:message>
+  <wsdl:message name="InsertPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectPayment" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentByStudentNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectPaymentByStudentNumber" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentByStudentNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectPaymentByStudentNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:SelectPaymentSummary" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:SelectPaymentSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePayment" />
+  </wsdl:message>
+  <wsdl:message name="DeletePaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AssociationSummaryReportSoapIn">
+    <wsdl:part name="parameters" element="tns:AssociationSummaryReport" />
+  </wsdl:message>
+  <wsdl:message name="AssociationSummaryReportSoapOut">
+    <wsdl:part name="parameters" element="tns:AssociationSummaryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentSummaryReportSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentSummaryReport" />
+  </wsdl:message>
+  <wsdl:message name="StudentSummaryReportSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentSummaryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentDetailReportSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentDetailReport" />
+  </wsdl:message>
+  <wsdl:message name="StudentDetailReportSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentDetailReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentCostCalculationAllSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentCostCalculationAll" />
+  </wsdl:message>
+  <wsdl:message name="StudentCostCalculationAllSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentCostCalculationAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentOrder" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectOrderedInstallmentSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectOrderedInstallment" />
+  </wsdl:message>
+  <wsdl:message name="SelectOrderedInstallmentSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectOrderedInstallmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAssociationDefinitionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAssociationDefinition" />
+  </wsdl:message>
+  <wsdl:message name="GetAssociationDefinitionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAssociationDefinitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentListByUnipaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentListByUnipa" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentListByUnipaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentListByUnipaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAssociationBursSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAssociationBurs" />
+  </wsdl:message>
+  <wsdl:message name="GetAssociationBursSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAssociationBursResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentBursSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentBurs" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentBursSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentBursResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertCreditCardPaymentDataSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCreditCardPaymentData" />
+  </wsdl:message>
+  <wsdl:message name="InsertCreditCardPaymentDataSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCreditCardPaymentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectCreditCardPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectCreditCardPayment" />
+  </wsdl:message>
+  <wsdl:message name="SelectCreditCardPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectCreditCardPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertCreditCardPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCreditCardPayment" />
+  </wsdl:message>
+  <wsdl:message name="InsertCreditCardPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCreditCardPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLoginDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateLoginData" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLoginDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateLoginDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssociationSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAssociation" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssociationSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAssociationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAssociation" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAssociationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAssociationDetail" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAssociationDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertCampusSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCampus" />
+  </wsdl:message>
+  <wsdl:message name="InsertCampusSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCampusResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCampusSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCampus" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCampusSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCampusResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectCampusSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectCampus" />
+  </wsdl:message>
+  <wsdl:message name="SelectCampusSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectCampusResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDepartmentSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDepartment" />
+  </wsdl:message>
+  <wsdl:message name="InsertDepartmentSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDepartmentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDepartment" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDepartmentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectDepartmentSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectDepartment" />
+  </wsdl:message>
+  <wsdl:message name="SelectDepartmentSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentElementTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentElementTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentElementTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentElementTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentPaymentChoiseSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertStudentPaymentChoise" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentPaymentChoiseSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertStudentPaymentChoiseResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentPaymentChoiseSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentPaymentChoise" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentPaymentChoiseSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentPaymentChoiseResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPaymentElementSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPaymentElement" />
+  </wsdl:message>
+  <wsdl:message name="InsertPaymentElementSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPaymentElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentElementsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectPaymentElements" />
+  </wsdl:message>
+  <wsdl:message name="SelectPaymentElementsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectPaymentElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePaymentElementSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePaymentElement" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePaymentElementSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePaymentElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePaymentElementSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePaymentElement" />
+  </wsdl:message>
+  <wsdl:message name="DeletePaymentElementSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePaymentElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPersonalSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPersonal" />
+  </wsdl:message>
+  <wsdl:message name="InsertPersonalSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPersonalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectPersonalSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectPersonal" />
+  </wsdl:message>
+  <wsdl:message name="SelectPersonalSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectPersonalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectPersonalByPersonalNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectPersonalByPersonalNumber" />
+  </wsdl:message>
+  <wsdl:message name="SelectPersonalByPersonalNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectPersonalByPersonalNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePersonalSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePersonal" />
+  </wsdl:message>
+  <wsdl:message name="DeletePersonalSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePersonalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAcademicPeriodSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAcademicPeriod" />
+  </wsdl:message>
+  <wsdl:message name="SelectAcademicPeriodSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAcademicPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAcademicPeriodSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAcademicPeriod" />
+  </wsdl:message>
+  <wsdl:message name="InsertAcademicPeriodSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAcademicPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAcademicPeriodSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAcademicPeriod" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAcademicPeriodSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAcademicPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAcademicPeriodSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAcademicPeriod" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAcademicPeriodSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAcademicPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertRole" />
+  </wsdl:message>
+  <wsdl:message name="InsertRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectRole" />
+  </wsdl:message>
+  <wsdl:message name="SelectRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectRoleByRoleCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectRoleByRoleCode" />
+  </wsdl:message>
+  <wsdl:message name="SelectRoleByRoleCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectRoleByRoleCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRole" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertStudent" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudent" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentBySubscriberNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentBySubscriberNumber" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentBySubscriberNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentBySubscriberNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateStudent" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteStudentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteStudent" />
+  </wsdl:message>
+  <wsdl:message name="DeleteStudentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentFinancialApproveSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentFinancialApprove" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentFinancialApproveSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentFinancialApproveResponse" />
+  </wsdl:message>
+  <wsdl:message name="OgrenciMaliOnayKaydetSoapIn">
+    <wsdl:part name="parameters" element="tns:OgrenciMaliOnayKaydet" />
+  </wsdl:message>
+  <wsdl:message name="OgrenciMaliOnayKaydetSoapOut">
+    <wsdl:part name="parameters" element="tns:OgrenciMaliOnayKaydetResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentReductionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertStudentReduction" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentReductionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertStudentReductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentReductionByStudentNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentReductionByStudentNumber" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentReductionByStudentNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentReductionByStudentNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentReductionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateStudentReduction" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentReductionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateStudentReductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteStudentReductionSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteStudentReduction" />
+  </wsdl:message>
+  <wsdl:message name="DeleteStudentReductionSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteStudentReductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssociationCostSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAssociationCost" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssociationCostSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAssociationCostResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationCostSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAssociationCost" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationCostSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAssociationCostResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationCostByCostIdSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAssociationCostByCostId" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationCostByCostIdSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAssociationCostByCostIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAssociationCostByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAssociationCostById" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAssociationCostByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAssociationCostByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAssociationCostByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAssociationCostById" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAssociationCostByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAssociationCostByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAssociationCostDetailByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAssociationCostDetailById" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAssociationCostDetailByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAssociationCostDetailByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentCostSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertStudentCost" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentCostSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertStudentCostResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentCost" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentCostResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostByCostIdSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentCostByCostId" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostByCostIdSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentCostByCostIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteStudentCostByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteStudentCostById" />
+  </wsdl:message>
+  <wsdl:message name="DeleteStudentCostByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteStudentCostByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentCostByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateStudentCostById" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentCostByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateStudentCostByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentCostDetailByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateStudentCostDetailById" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStudentCostDetailByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateStudentCostDetailByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationReductionSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAssociationReduction" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationReductionSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAssociationReductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssociationReductionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAssociationReduction" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssociationReductionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAssociationReductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAssociationReductionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAssociationReduction" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAssociationReductionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAssociationReductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAssociationReductionSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAssociationReduction" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAssociationReductionSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAssociationReductionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationCostPriceSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAssociationCostPrice" />
+  </wsdl:message>
+  <wsdl:message name="SelectAssociationCostPriceSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAssociationCostPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostPriceSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentCostPrice" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostPriceSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentCostPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostPriceByAssociationSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectStudentCostPriceByAssociation" />
+  </wsdl:message>
+  <wsdl:message name="SelectStudentCostPriceByAssociationSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectStudentCostPriceByAssociationResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreviewInstallmentSoapIn">
+    <wsdl:part name="parameters" element="tns:PreviewInstallment" />
+  </wsdl:message>
+  <wsdl:message name="PreviewInstallmentSoapOut">
+    <wsdl:part name="parameters" element="tns:PreviewInstallmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateInstallmentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateInstallment" />
+  </wsdl:message>
+  <wsdl:message name="CreateInstallmentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateInstallmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectInstallmentSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectInstallment" />
+  </wsdl:message>
+  <wsdl:message name="SelectInstallmentSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectInstallmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstallmentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteInstallment" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstallmentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteInstallmentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CollegePaymentSystemSoap">
+    <wsdl:operation name="DeleteInstallmentDetail">
+      <wsdl:input message="tns:DeleteInstallmentDetailSoapIn" />
+      <wsdl:output message="tns:DeleteInstallmentDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentInstallmentDetail">
+      <wsdl:input message="tns:UpdateStudentInstallmentDetailSoapIn" />
+      <wsdl:output message="tns:UpdateStudentInstallmentDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectInstallmentLog">
+      <wsdl:input message="tns:SelectInstallmentLogSoapIn" />
+      <wsdl:output message="tns:SelectInstallmentLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPayment">
+      <wsdl:input message="tns:InsertPaymentSoapIn" />
+      <wsdl:output message="tns:InsertPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPayment">
+      <wsdl:input message="tns:SelectPaymentSoapIn" />
+      <wsdl:output message="tns:SelectPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentByStudentNumber">
+      <wsdl:input message="tns:SelectPaymentByStudentNumberSoapIn" />
+      <wsdl:output message="tns:SelectPaymentByStudentNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentSummary">
+      <wsdl:input message="tns:SelectPaymentSummarySoapIn" />
+      <wsdl:output message="tns:SelectPaymentSummarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePayment">
+      <wsdl:input message="tns:DeletePaymentSoapIn" />
+      <wsdl:output message="tns:DeletePaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AssociationSummaryReport">
+      <wsdl:input message="tns:AssociationSummaryReportSoapIn" />
+      <wsdl:output message="tns:AssociationSummaryReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentSummaryReport">
+      <wsdl:input message="tns:StudentSummaryReportSoapIn" />
+      <wsdl:output message="tns:StudentSummaryReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentDetailReport">
+      <wsdl:input message="tns:StudentDetailReportSoapIn" />
+      <wsdl:output message="tns:StudentDetailReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentCostCalculationAll">
+      <wsdl:input message="tns:StudentCostCalculationAllSoapIn" />
+      <wsdl:output message="tns:StudentCostCalculationAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentOrder">
+      <wsdl:input message="tns:SelectStudentOrderSoapIn" />
+      <wsdl:output message="tns:SelectStudentOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOrderedInstallment">
+      <wsdl:input message="tns:SelectOrderedInstallmentSoapIn" />
+      <wsdl:output message="tns:SelectOrderedInstallmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociationDefinition">
+      <wsdl:input message="tns:GetAssociationDefinitionSoapIn" />
+      <wsdl:output message="tns:GetAssociationDefinitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentListByUnipa">
+      <wsdl:input message="tns:GetStudentListByUnipaSoapIn" />
+      <wsdl:output message="tns:GetStudentListByUnipaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociationBurs">
+      <wsdl:input message="tns:GetAssociationBursSoapIn" />
+      <wsdl:output message="tns:GetAssociationBursSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentBurs">
+      <wsdl:input message="tns:GetStudentBursSoapIn" />
+      <wsdl:output message="tns:GetStudentBursSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCreditCardPaymentData">
+      <wsdl:input message="tns:InsertCreditCardPaymentDataSoapIn" />
+      <wsdl:output message="tns:InsertCreditCardPaymentDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectCreditCardPayment">
+      <wsdl:input message="tns:SelectCreditCardPaymentSoapIn" />
+      <wsdl:output message="tns:SelectCreditCardPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCreditCardPayment">
+      <wsdl:input message="tns:InsertCreditCardPaymentSoapIn" />
+      <wsdl:output message="tns:InsertCreditCardPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginData">
+      <wsdl:input message="tns:UpdateLoginDataSoapIn" />
+      <wsdl:output message="tns:UpdateLoginDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociation">
+      <wsdl:input message="tns:InsertAssociationSoapIn" />
+      <wsdl:output message="tns:InsertAssociationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociation">
+      <wsdl:input message="tns:SelectAssociationSoapIn" />
+      <wsdl:output message="tns:SelectAssociationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationDetail">
+      <wsdl:input message="tns:SelectAssociationDetailSoapIn" />
+      <wsdl:output message="tns:SelectAssociationDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCampus">
+      <wsdl:input message="tns:InsertCampusSoapIn" />
+      <wsdl:output message="tns:InsertCampusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampus">
+      <wsdl:input message="tns:DeleteCampusSoapIn" />
+      <wsdl:output message="tns:DeleteCampusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectCampus">
+      <wsdl:input message="tns:SelectCampusSoapIn" />
+      <wsdl:output message="tns:SelectCampusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDepartment">
+      <wsdl:input message="tns:InsertDepartmentSoapIn" />
+      <wsdl:output message="tns:InsertDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDepartment">
+      <wsdl:input message="tns:DeleteDepartmentSoapIn" />
+      <wsdl:output message="tns:DeleteDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectDepartment">
+      <wsdl:input message="tns:SelectDepartmentSoapIn" />
+      <wsdl:output message="tns:SelectDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentElementTypes">
+      <wsdl:input message="tns:GetPaymentElementTypesSoapIn" />
+      <wsdl:output message="tns:GetPaymentElementTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentPaymentChoise">
+      <wsdl:input message="tns:InsertStudentPaymentChoiseSoapIn" />
+      <wsdl:output message="tns:InsertStudentPaymentChoiseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentPaymentChoise">
+      <wsdl:input message="tns:SelectStudentPaymentChoiseSoapIn" />
+      <wsdl:output message="tns:SelectStudentPaymentChoiseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPaymentElement">
+      <wsdl:input message="tns:InsertPaymentElementSoapIn" />
+      <wsdl:output message="tns:InsertPaymentElementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentElements">
+      <wsdl:input message="tns:SelectPaymentElementsSoapIn" />
+      <wsdl:output message="tns:SelectPaymentElementsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePaymentElement">
+      <wsdl:input message="tns:UpdatePaymentElementSoapIn" />
+      <wsdl:output message="tns:UpdatePaymentElementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePaymentElement">
+      <wsdl:input message="tns:DeletePaymentElementSoapIn" />
+      <wsdl:output message="tns:DeletePaymentElementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPersonal">
+      <wsdl:input message="tns:InsertPersonalSoapIn" />
+      <wsdl:output message="tns:InsertPersonalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPersonal">
+      <wsdl:input message="tns:SelectPersonalSoapIn" />
+      <wsdl:output message="tns:SelectPersonalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPersonalByPersonalNumber">
+      <wsdl:input message="tns:SelectPersonalByPersonalNumberSoapIn" />
+      <wsdl:output message="tns:SelectPersonalByPersonalNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePersonal">
+      <wsdl:input message="tns:DeletePersonalSoapIn" />
+      <wsdl:output message="tns:DeletePersonalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAcademicPeriod">
+      <wsdl:input message="tns:SelectAcademicPeriodSoapIn" />
+      <wsdl:output message="tns:SelectAcademicPeriodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAcademicPeriod">
+      <wsdl:input message="tns:InsertAcademicPeriodSoapIn" />
+      <wsdl:output message="tns:InsertAcademicPeriodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAcademicPeriod">
+      <wsdl:input message="tns:UpdateAcademicPeriodSoapIn" />
+      <wsdl:output message="tns:UpdateAcademicPeriodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAcademicPeriod">
+      <wsdl:input message="tns:DeleteAcademicPeriodSoapIn" />
+      <wsdl:output message="tns:DeleteAcademicPeriodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertRole">
+      <wsdl:input message="tns:InsertRoleSoapIn" />
+      <wsdl:output message="tns:InsertRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectRole">
+      <wsdl:input message="tns:SelectRoleSoapIn" />
+      <wsdl:output message="tns:SelectRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectRoleByRoleCode">
+      <wsdl:input message="tns:SelectRoleByRoleCodeSoapIn" />
+      <wsdl:output message="tns:SelectRoleByRoleCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRole">
+      <wsdl:input message="tns:DeleteRoleSoapIn" />
+      <wsdl:output message="tns:DeleteRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudent">
+      <wsdl:input message="tns:InsertStudentSoapIn" />
+      <wsdl:output message="tns:InsertStudentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudent">
+      <wsdl:input message="tns:SelectStudentSoapIn" />
+      <wsdl:output message="tns:SelectStudentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentBySubscriberNumber">
+      <wsdl:input message="tns:SelectStudentBySubscriberNumberSoapIn" />
+      <wsdl:output message="tns:SelectStudentBySubscriberNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudent">
+      <wsdl:input message="tns:UpdateStudentSoapIn" />
+      <wsdl:output message="tns:UpdateStudentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudent">
+      <wsdl:input message="tns:DeleteStudentSoapIn" />
+      <wsdl:output message="tns:DeleteStudentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentFinancialApprove">
+      <wsdl:input message="tns:SelectStudentFinancialApproveSoapIn" />
+      <wsdl:output message="tns:SelectStudentFinancialApproveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OgrenciMaliOnayKaydet">
+      <wsdl:input message="tns:OgrenciMaliOnayKaydetSoapIn" />
+      <wsdl:output message="tns:OgrenciMaliOnayKaydetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentReduction">
+      <wsdl:input message="tns:InsertStudentReductionSoapIn" />
+      <wsdl:output message="tns:InsertStudentReductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentReductionByStudentNumber">
+      <wsdl:input message="tns:SelectStudentReductionByStudentNumberSoapIn" />
+      <wsdl:output message="tns:SelectStudentReductionByStudentNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentReduction">
+      <wsdl:input message="tns:UpdateStudentReductionSoapIn" />
+      <wsdl:output message="tns:UpdateStudentReductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudentReduction">
+      <wsdl:input message="tns:DeleteStudentReductionSoapIn" />
+      <wsdl:output message="tns:DeleteStudentReductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociationCost">
+      <wsdl:input message="tns:InsertAssociationCostSoapIn" />
+      <wsdl:output message="tns:InsertAssociationCostSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCost">
+      <wsdl:input message="tns:SelectAssociationCostSoapIn" />
+      <wsdl:output message="tns:SelectAssociationCostSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCostByCostId">
+      <wsdl:input message="tns:SelectAssociationCostByCostIdSoapIn" />
+      <wsdl:output message="tns:SelectAssociationCostByCostIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssociationCostById">
+      <wsdl:input message="tns:DeleteAssociationCostByIdSoapIn" />
+      <wsdl:output message="tns:DeleteAssociationCostByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationCostById">
+      <wsdl:input message="tns:UpdateAssociationCostByIdSoapIn" />
+      <wsdl:output message="tns:UpdateAssociationCostByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationCostDetailById">
+      <wsdl:input message="tns:UpdateAssociationCostDetailByIdSoapIn" />
+      <wsdl:output message="tns:UpdateAssociationCostDetailByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentCost">
+      <wsdl:input message="tns:InsertStudentCostSoapIn" />
+      <wsdl:output message="tns:InsertStudentCostSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCost">
+      <wsdl:input message="tns:SelectStudentCostSoapIn" />
+      <wsdl:output message="tns:SelectStudentCostSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostByCostId">
+      <wsdl:input message="tns:SelectStudentCostByCostIdSoapIn" />
+      <wsdl:output message="tns:SelectStudentCostByCostIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudentCostById">
+      <wsdl:input message="tns:DeleteStudentCostByIdSoapIn" />
+      <wsdl:output message="tns:DeleteStudentCostByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentCostById">
+      <wsdl:input message="tns:UpdateStudentCostByIdSoapIn" />
+      <wsdl:output message="tns:UpdateStudentCostByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentCostDetailById">
+      <wsdl:input message="tns:UpdateStudentCostDetailByIdSoapIn" />
+      <wsdl:output message="tns:UpdateStudentCostDetailByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationReduction">
+      <wsdl:input message="tns:SelectAssociationReductionSoapIn" />
+      <wsdl:output message="tns:SelectAssociationReductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociationReduction">
+      <wsdl:input message="tns:InsertAssociationReductionSoapIn" />
+      <wsdl:output message="tns:InsertAssociationReductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationReduction">
+      <wsdl:input message="tns:UpdateAssociationReductionSoapIn" />
+      <wsdl:output message="tns:UpdateAssociationReductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssociationReduction">
+      <wsdl:input message="tns:DeleteAssociationReductionSoapIn" />
+      <wsdl:output message="tns:DeleteAssociationReductionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCostPrice">
+      <wsdl:input message="tns:SelectAssociationCostPriceSoapIn" />
+      <wsdl:output message="tns:SelectAssociationCostPriceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostPrice">
+      <wsdl:input message="tns:SelectStudentCostPriceSoapIn" />
+      <wsdl:output message="tns:SelectStudentCostPriceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostPriceByAssociation">
+      <wsdl:input message="tns:SelectStudentCostPriceByAssociationSoapIn" />
+      <wsdl:output message="tns:SelectStudentCostPriceByAssociationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreviewInstallment">
+      <wsdl:input message="tns:PreviewInstallmentSoapIn" />
+      <wsdl:output message="tns:PreviewInstallmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateInstallment">
+      <wsdl:input message="tns:CreateInstallmentSoapIn" />
+      <wsdl:output message="tns:CreateInstallmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectInstallment">
+      <wsdl:input message="tns:SelectInstallmentSoapIn" />
+      <wsdl:output message="tns:SelectInstallmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstallment">
+      <wsdl:input message="tns:DeleteInstallmentSoapIn" />
+      <wsdl:output message="tns:DeleteInstallmentSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CollegePaymentSystemSoap" type="tns:CollegePaymentSystemSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteInstallmentDetail">
+      <soap:operation soapAction="http://tempuri.org/DeleteInstallmentDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentInstallmentDetail">
+      <soap:operation soapAction="http://tempuri.org/UpdateStudentInstallmentDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectInstallmentLog">
+      <soap:operation soapAction="http://tempuri.org/SelectInstallmentLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPayment">
+      <soap:operation soapAction="http://tempuri.org/InsertPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPayment">
+      <soap:operation soapAction="http://tempuri.org/SelectPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentByStudentNumber">
+      <soap:operation soapAction="http://tempuri.org/SelectPaymentByStudentNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentSummary">
+      <soap:operation soapAction="http://tempuri.org/SelectPaymentSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePayment">
+      <soap:operation soapAction="http://tempuri.org/DeletePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssociationSummaryReport">
+      <soap:operation soapAction="http://tempuri.org/AssociationSummaryReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentSummaryReport">
+      <soap:operation soapAction="http://tempuri.org/StudentSummaryReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentDetailReport">
+      <soap:operation soapAction="http://tempuri.org/StudentDetailReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentCostCalculationAll">
+      <soap:operation soapAction="http://tempuri.org/StudentCostCalculationAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentOrder">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOrderedInstallment">
+      <soap:operation soapAction="http://tempuri.org/SelectOrderedInstallment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociationDefinition">
+      <soap:operation soapAction="http://tempuri.org/GetAssociationDefinition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentListByUnipa">
+      <soap:operation soapAction="http://tempuri.org/GetStudentListByUnipa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociationBurs">
+      <soap:operation soapAction="http://tempuri.org/GetAssociationBurs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentBurs">
+      <soap:operation soapAction="http://tempuri.org/GetStudentBurs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCreditCardPaymentData">
+      <soap:operation soapAction="http://tempuri.org/InsertCreditCardPaymentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectCreditCardPayment">
+      <soap:operation soapAction="http://tempuri.org/SelectCreditCardPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCreditCardPayment">
+      <soap:operation soapAction="http://tempuri.org/InsertCreditCardPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginData">
+      <soap:operation soapAction="http://tempuri.org/UpdateLoginData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociation">
+      <soap:operation soapAction="http://tempuri.org/InsertAssociation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociation">
+      <soap:operation soapAction="http://tempuri.org/SelectAssociation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationDetail">
+      <soap:operation soapAction="http://tempuri.org/SelectAssociationDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCampus">
+      <soap:operation soapAction="http://tempuri.org/InsertCampus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampus">
+      <soap:operation soapAction="http://tempuri.org/DeleteCampus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectCampus">
+      <soap:operation soapAction="http://tempuri.org/SelectCampus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDepartment">
+      <soap:operation soapAction="http://tempuri.org/InsertDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDepartment">
+      <soap:operation soapAction="http://tempuri.org/DeleteDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectDepartment">
+      <soap:operation soapAction="http://tempuri.org/SelectDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentElementTypes">
+      <soap:operation soapAction="http://tempuri.org/GetPaymentElementTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentPaymentChoise">
+      <soap:operation soapAction="http://tempuri.org/InsertStudentPaymentChoise" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentPaymentChoise">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentPaymentChoise" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPaymentElement">
+      <soap:operation soapAction="http://tempuri.org/InsertPaymentElement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentElements">
+      <soap:operation soapAction="http://tempuri.org/SelectPaymentElements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePaymentElement">
+      <soap:operation soapAction="http://tempuri.org/UpdatePaymentElement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePaymentElement">
+      <soap:operation soapAction="http://tempuri.org/DeletePaymentElement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPersonal">
+      <soap:operation soapAction="http://tempuri.org/InsertPersonal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPersonal">
+      <soap:operation soapAction="http://tempuri.org/SelectPersonal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPersonalByPersonalNumber">
+      <soap:operation soapAction="http://tempuri.org/SelectPersonalByPersonalNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePersonal">
+      <soap:operation soapAction="http://tempuri.org/DeletePersonal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAcademicPeriod">
+      <soap:operation soapAction="http://tempuri.org/SelectAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAcademicPeriod">
+      <soap:operation soapAction="http://tempuri.org/InsertAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAcademicPeriod">
+      <soap:operation soapAction="http://tempuri.org/UpdateAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAcademicPeriod">
+      <soap:operation soapAction="http://tempuri.org/DeleteAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertRole">
+      <soap:operation soapAction="http://tempuri.org/InsertRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectRole">
+      <soap:operation soapAction="http://tempuri.org/SelectRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectRoleByRoleCode">
+      <soap:operation soapAction="http://tempuri.org/SelectRoleByRoleCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRole">
+      <soap:operation soapAction="http://tempuri.org/DeleteRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudent">
+      <soap:operation soapAction="http://tempuri.org/InsertStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudent">
+      <soap:operation soapAction="http://tempuri.org/SelectStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentBySubscriberNumber">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentBySubscriberNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudent">
+      <soap:operation soapAction="http://tempuri.org/UpdateStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudent">
+      <soap:operation soapAction="http://tempuri.org/DeleteStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentFinancialApprove">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentFinancialApprove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OgrenciMaliOnayKaydet">
+      <soap:operation soapAction="http://tempuri.org/OgrenciMaliOnayKaydet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentReduction">
+      <soap:operation soapAction="http://tempuri.org/InsertStudentReduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentReductionByStudentNumber">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentReductionByStudentNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentReduction">
+      <soap:operation soapAction="http://tempuri.org/UpdateStudentReduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudentReduction">
+      <soap:operation soapAction="http://tempuri.org/DeleteStudentReduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociationCost">
+      <soap:operation soapAction="http://tempuri.org/InsertAssociationCost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCost">
+      <soap:operation soapAction="http://tempuri.org/SelectAssociationCost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCostByCostId">
+      <soap:operation soapAction="http://tempuri.org/SelectAssociationCostByCostId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssociationCostById">
+      <soap:operation soapAction="http://tempuri.org/DeleteAssociationCostById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationCostById">
+      <soap:operation soapAction="http://tempuri.org/UpdateAssociationCostById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationCostDetailById">
+      <soap:operation soapAction="http://tempuri.org/UpdateAssociationCostDetailById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentCost">
+      <soap:operation soapAction="http://tempuri.org/InsertStudentCost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCost">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentCost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostByCostId">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentCostByCostId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudentCostById">
+      <soap:operation soapAction="http://tempuri.org/DeleteStudentCostById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentCostById">
+      <soap:operation soapAction="http://tempuri.org/UpdateStudentCostById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentCostDetailById">
+      <soap:operation soapAction="http://tempuri.org/UpdateStudentCostDetailById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationReduction">
+      <soap:operation soapAction="http://tempuri.org/SelectAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociationReduction">
+      <soap:operation soapAction="http://tempuri.org/InsertAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationReduction">
+      <soap:operation soapAction="http://tempuri.org/UpdateAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssociationReduction">
+      <soap:operation soapAction="http://tempuri.org/DeleteAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCostPrice">
+      <soap:operation soapAction="http://tempuri.org/SelectAssociationCostPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostPrice">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentCostPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostPriceByAssociation">
+      <soap:operation soapAction="http://tempuri.org/SelectStudentCostPriceByAssociation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreviewInstallment">
+      <soap:operation soapAction="http://tempuri.org/PreviewInstallment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInstallment">
+      <soap:operation soapAction="http://tempuri.org/CreateInstallment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectInstallment">
+      <soap:operation soapAction="http://tempuri.org/SelectInstallment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstallment">
+      <soap:operation soapAction="http://tempuri.org/DeleteInstallment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CollegePaymentSystemSoap12" type="tns:CollegePaymentSystemSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteInstallmentDetail">
+      <soap12:operation soapAction="http://tempuri.org/DeleteInstallmentDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentInstallmentDetail">
+      <soap12:operation soapAction="http://tempuri.org/UpdateStudentInstallmentDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectInstallmentLog">
+      <soap12:operation soapAction="http://tempuri.org/SelectInstallmentLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPayment">
+      <soap12:operation soapAction="http://tempuri.org/InsertPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPayment">
+      <soap12:operation soapAction="http://tempuri.org/SelectPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentByStudentNumber">
+      <soap12:operation soapAction="http://tempuri.org/SelectPaymentByStudentNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentSummary">
+      <soap12:operation soapAction="http://tempuri.org/SelectPaymentSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePayment">
+      <soap12:operation soapAction="http://tempuri.org/DeletePayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssociationSummaryReport">
+      <soap12:operation soapAction="http://tempuri.org/AssociationSummaryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentSummaryReport">
+      <soap12:operation soapAction="http://tempuri.org/StudentSummaryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentDetailReport">
+      <soap12:operation soapAction="http://tempuri.org/StudentDetailReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentCostCalculationAll">
+      <soap12:operation soapAction="http://tempuri.org/StudentCostCalculationAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentOrder">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOrderedInstallment">
+      <soap12:operation soapAction="http://tempuri.org/SelectOrderedInstallment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociationDefinition">
+      <soap12:operation soapAction="http://tempuri.org/GetAssociationDefinition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentListByUnipa">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentListByUnipa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociationBurs">
+      <soap12:operation soapAction="http://tempuri.org/GetAssociationBurs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentBurs">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentBurs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCreditCardPaymentData">
+      <soap12:operation soapAction="http://tempuri.org/InsertCreditCardPaymentData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectCreditCardPayment">
+      <soap12:operation soapAction="http://tempuri.org/SelectCreditCardPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCreditCardPayment">
+      <soap12:operation soapAction="http://tempuri.org/InsertCreditCardPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginData">
+      <soap12:operation soapAction="http://tempuri.org/UpdateLoginData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociation">
+      <soap12:operation soapAction="http://tempuri.org/InsertAssociation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociation">
+      <soap12:operation soapAction="http://tempuri.org/SelectAssociation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationDetail">
+      <soap12:operation soapAction="http://tempuri.org/SelectAssociationDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCampus">
+      <soap12:operation soapAction="http://tempuri.org/InsertCampus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampus">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCampus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectCampus">
+      <soap12:operation soapAction="http://tempuri.org/SelectCampus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDepartment">
+      <soap12:operation soapAction="http://tempuri.org/InsertDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDepartment">
+      <soap12:operation soapAction="http://tempuri.org/DeleteDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectDepartment">
+      <soap12:operation soapAction="http://tempuri.org/SelectDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentElementTypes">
+      <soap12:operation soapAction="http://tempuri.org/GetPaymentElementTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentPaymentChoise">
+      <soap12:operation soapAction="http://tempuri.org/InsertStudentPaymentChoise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentPaymentChoise">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentPaymentChoise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPaymentElement">
+      <soap12:operation soapAction="http://tempuri.org/InsertPaymentElement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPaymentElements">
+      <soap12:operation soapAction="http://tempuri.org/SelectPaymentElements" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePaymentElement">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePaymentElement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePaymentElement">
+      <soap12:operation soapAction="http://tempuri.org/DeletePaymentElement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPersonal">
+      <soap12:operation soapAction="http://tempuri.org/InsertPersonal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPersonal">
+      <soap12:operation soapAction="http://tempuri.org/SelectPersonal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPersonalByPersonalNumber">
+      <soap12:operation soapAction="http://tempuri.org/SelectPersonalByPersonalNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePersonal">
+      <soap12:operation soapAction="http://tempuri.org/DeletePersonal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAcademicPeriod">
+      <soap12:operation soapAction="http://tempuri.org/SelectAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAcademicPeriod">
+      <soap12:operation soapAction="http://tempuri.org/InsertAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAcademicPeriod">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAcademicPeriod">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAcademicPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertRole">
+      <soap12:operation soapAction="http://tempuri.org/InsertRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectRole">
+      <soap12:operation soapAction="http://tempuri.org/SelectRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectRoleByRoleCode">
+      <soap12:operation soapAction="http://tempuri.org/SelectRoleByRoleCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRole">
+      <soap12:operation soapAction="http://tempuri.org/DeleteRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudent">
+      <soap12:operation soapAction="http://tempuri.org/InsertStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudent">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentBySubscriberNumber">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentBySubscriberNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudent">
+      <soap12:operation soapAction="http://tempuri.org/UpdateStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudent">
+      <soap12:operation soapAction="http://tempuri.org/DeleteStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentFinancialApprove">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentFinancialApprove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OgrenciMaliOnayKaydet">
+      <soap12:operation soapAction="http://tempuri.org/OgrenciMaliOnayKaydet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentReduction">
+      <soap12:operation soapAction="http://tempuri.org/InsertStudentReduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentReductionByStudentNumber">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentReductionByStudentNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentReduction">
+      <soap12:operation soapAction="http://tempuri.org/UpdateStudentReduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudentReduction">
+      <soap12:operation soapAction="http://tempuri.org/DeleteStudentReduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociationCost">
+      <soap12:operation soapAction="http://tempuri.org/InsertAssociationCost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCost">
+      <soap12:operation soapAction="http://tempuri.org/SelectAssociationCost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCostByCostId">
+      <soap12:operation soapAction="http://tempuri.org/SelectAssociationCostByCostId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssociationCostById">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAssociationCostById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationCostById">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAssociationCostById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationCostDetailById">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAssociationCostDetailById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStudentCost">
+      <soap12:operation soapAction="http://tempuri.org/InsertStudentCost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCost">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentCost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostByCostId">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentCostByCostId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStudentCostById">
+      <soap12:operation soapAction="http://tempuri.org/DeleteStudentCostById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentCostById">
+      <soap12:operation soapAction="http://tempuri.org/UpdateStudentCostById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStudentCostDetailById">
+      <soap12:operation soapAction="http://tempuri.org/UpdateStudentCostDetailById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationReduction">
+      <soap12:operation soapAction="http://tempuri.org/SelectAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssociationReduction">
+      <soap12:operation soapAction="http://tempuri.org/InsertAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssociationReduction">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssociationReduction">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAssociationReduction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAssociationCostPrice">
+      <soap12:operation soapAction="http://tempuri.org/SelectAssociationCostPrice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostPrice">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentCostPrice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectStudentCostPriceByAssociation">
+      <soap12:operation soapAction="http://tempuri.org/SelectStudentCostPriceByAssociation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreviewInstallment">
+      <soap12:operation soapAction="http://tempuri.org/PreviewInstallment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInstallment">
+      <soap12:operation soapAction="http://tempuri.org/CreateInstallment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectInstallment">
+      <soap12:operation soapAction="http://tempuri.org/SelectInstallment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstallment">
+      <soap12:operation soapAction="http://tempuri.org/DeleteInstallment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CollegePaymentSystem">
+    <wsdl:port name="CollegePaymentSystemSoap" binding="tns:CollegePaymentSystemSoap">
+      <soap:address location="http://localhost:50754/WebService/Services/CollegePaymentSystem.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CollegePaymentSystemSoap12" binding="tns:CollegePaymentSystemSoap12">
+      <soap12:address location="http://localhost:50754/WebService/Services/CollegePaymentSystem.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

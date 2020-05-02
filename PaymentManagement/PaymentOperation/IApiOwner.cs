@@ -1,5 +1,7 @@
 ﻿using PaymentManagement.Models.PaymentModels.Request;
 using PaymentManagement.Models.PaymentModels.Response;
+using PaymentManagement.PaymentOperation.Request;
+using PaymentManagement.PaymentOperation.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,11 @@ namespace PaymentManagement.PaymentOperation
 {
     public interface IApiOwner
     {
-        T PaymentRequest<T>(IRequestBase request) where T : IResponseBase;
+        IResponseBase PaymentRequest<T>(IBankRequest request) where T : ResponseBase, IResponseBase;
+        IBankRequest PrepareRequest(IRequestBase request);
+        int GetInstallementCount();
+        SessionResponseBase CreateSession(IBankRequest bankRequest);
+        IResponseBase QuerySession(string sessionId);
+        IResponseBase QueryPayment(string sessionId);
     }
 }
